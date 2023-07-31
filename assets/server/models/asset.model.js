@@ -1,11 +1,13 @@
 const mongoose = require('mongoose');
 const assetSchema =  new mongoose.Schema({
-  username: String,
-  password: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-});
+  item_id: Number,
+  assignedTo: String,
+  Condition: String,
+  PurchaseDate: Date,
+  DesolveDate: Date,
+  SerialNumber: String,
+  Details: String,
+  ExpireDate: Date,
+}{ timestamps: true });
 const Asset = mongoose.model("Asset", assetSchema);
 module.exports = Asset;

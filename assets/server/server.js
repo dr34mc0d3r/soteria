@@ -22,7 +22,7 @@ app.get('/', function (req, res) {
 })
 
 app.use('/api/auth/', userRoutes);
-// app.use('/api/asset/', assetRoutes);
+app.use('/api/asset/', assetRoutes);
 
 app.listen(port, () => {
   console.log(`Server is listening at http://localhost:${port}`);
