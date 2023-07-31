@@ -1,0 +1,47 @@
+Base source for this app
+https://github.com/makeuseofcode/Nodejs-REST-API-JWT
+
+
+
+
+
+User Roles and JWT
+https://www.bezkoder.com/node-js-mongodb-auth-jwt/
+
+
+
+Next js Fetch - good video
+https://www.youtube.com/watch?v=-Sj05H2AuW8
+
+
+
+
+
+
+Creating the backup
+docker exec -it mongodb sh
+cd /
+mongodump -d soteria_db
+
+this will create files in 
+/dump/soteria_db
+
+exit
+
+Copy the backup to the host machine
+mkdir DBBackup
+cd DBBackup
+docker cp mongodb:/dump .
+
+
+
+RESTORE
+docker cp dump mongodb:/dump
+docker exec -it mongodb sh
+docker exec -i mongodb /usr/bin/mongorestore --nsInclude=soteria_db.\* /dump/soteria_db
+
+
+
+
+For DB authentication see
+https://davejansen.com/how-to-dump-restore-a-mongodb-database-from-a-docker-container/
