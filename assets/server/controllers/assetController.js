@@ -15,7 +15,7 @@ const Asset = require('../models/asset.model');
 // ExpireDate: Date,
 
 
-exports.addAsset = async (req, res) => {
+exports.createAsset = async (req, res) => {
   const { item_id, assignedTo, Condition, PurchaseDate, DesolveDate, SerialNumber, Details, ExpireDate } = req.body;
   // console.log("req.body: ", req.body);
 
@@ -47,79 +47,29 @@ exports.addAsset = async (req, res) => {
   }
 };
 
-exports.loginUser = async (req, res) => {
-  const { username, email, password } = req.body;
 
-
-  // console.log("req.body: ", req.body);
-  try {
-    const user = await User.findOne({ email });
-    if (!user) {
-      return res.status(404).send({ message: 'User not found' });
-    } else {
-      bcrypt.compare(password, user.password, function (err, result) {
-        if (result) {
-          const payload = { userId: user._id };
-          const token = generateToken(payload);
-
-          res.status(200).json({
-            id: user.id,
-            message: "Authentication successful!",
-            token: token
-          });
-
-        } else {
-          res.status(401).json({
-            message: "Invalid credentials!",
-          });
-        }
-      });
-    }
-  } catch (error) {
-    console.log(error);
-    res.status(500).send({ message: 'An error occurred while logging in' });
-  }
-};
-
-
-exports.logOutUser = async (req, res) => {
-  try {
-    // res.cookie('token', "", {
-    //   httpOnly: true,
-    //   secure: false,
-    //   sameSite: "strict",
-    //   expires: new Date,
-    //   path: "/"
-    // });
-
-    res.status(200).json({
-      message: "Logout successful!",
-      token: ""
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).send({ message: 'An error occurred while logging out' });
-  }
-};
-
-exports.profile = async (req, res) => {
+exports.updateAssetByID = async (req, res) => {
   console.log('------------REQUESTED ID: ', req.params.id);
   const id = req.params.id;
 
-  User.findByPk(id).then(result => {
+  Asset.findByPk(id).then(result => {
     if (result) {
-      const user = {
-        id: result.id,
-        createdAt: result.createdAt,
-        email: result.email,
-        username: result.username,
-        updatedAt: result.updatedAt
+      const asset = {
+        item_id: result.item_id,
+        assignedTo: result.assignedTo,
+        Condition: result.Condition,
+        PurchaseDate: result.PurchaseDate,
+        DesolveDate: result.DesolveDate,
+        SerialNumber: result.SerialNumber,
+        Details: result.Details,
+        ExpireDate: result.ExpireDate
       };
-      console.log('------------user: ', user);
-      res.status(200).json(user);
+      c
+      console.log('------------asset: ', asset);
+      res.status(200).json(asset);
     } else {
       res.status(404).json({
-        message: "User not found!"
+        message: "Asset not found!"
       })
     }
   }).catch(error => {
@@ -127,14 +77,50 @@ exports.profile = async (req, res) => {
       message: "Something went wrong!"
     })
   });
+};
+
+exports.deleteAssetByID = async (req, res) => {
+  const id = req.params.id;
+
 }
 
+exports.assetsGetByID = async (req, res) => {
+  console.log('------------REQUESTED ID: ', req.params.id);
+  const id = req.params.id;
+
+  Asset.findByPk(id).then(result => {
+    if (result) {
+      const asset = {
+        item_id: result.item_id,
+        assignedTo: result.assignedTo,
+        Condition: result.Condition,
+        PurchaseDate: result.PurchaseDate,
+        DesolveDate: result.DesolveDate,
+        SerialNumber: result.SerialNumber,
+        Details: result.Details,
+        ExpireDate: result.ExpireDate
+      };
+      c
+      console.log('------------asset: ', asset);
+      res.status(200).json(asset);
+    } else {
+      res.status(404).json({
+        message: "Asset not found!"
+      })
+    }
+  }).catch(error => {
+    res.status(500).json({
+      message: "Something went wrong!"
+    })
+  });
+};
 
 
-exports.getUsers = async (req, res) => {
+
+exports.assetsQuery = async (req, res) => {
   try {
-    const users = await User.find({});
-    res.json(users);
+    const assets = await Asset.find({});
+    res.json(assets);
   } catch (error) {
     console.log(error);
     res.status(500).send({ message: 'An error occurred!!' });

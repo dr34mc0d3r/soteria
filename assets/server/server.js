@@ -15,7 +15,7 @@ app.use(cors());
 app.use(cookieParser());
 
 const userRoutes = require('./routes/userRoutes');
-// const userRoutes = require('./routes/assetRoutes');
+const assetRoutes = require('./routes/assetRoutes');
 
 app.get('/', function (req, res) {
   res.status(201).send({ message: 'welcome' });
