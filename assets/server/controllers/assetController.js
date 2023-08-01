@@ -84,7 +84,7 @@ exports.deleteAssetByID = async (req, res) => {
 
 }
 
-exports.assetsGetByID = async (req, res) => {
+exports.assetGetByID = async (req, res) => {
   console.log('------------REQUESTED ID: ', req.params.id);
   const id = req.params.id;
 
@@ -117,7 +117,7 @@ exports.assetsGetByID = async (req, res) => {
 
 
 
-exports.assetsQuery = async (req, res) => {
+exports.assetQuery = async (req, res) => {
   try {
     const assets = await Asset.find({});
     res.json(assets);
