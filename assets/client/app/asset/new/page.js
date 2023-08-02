@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useRouter } from 'next/navigation';
 import { AssetNavbar } from "@/app/components/AssetNavbar";
+import dataArrays from "../dataArrays";
 
 
 
@@ -13,20 +14,20 @@ export default function NewAsset() {
   const router = useRouter();
 
   const [newasset, setNewAsset] = useState({
-    item_id: "",
-        assignedTo: "",
-        Condition: "",
-        PurchaseDate: "",
-        DesolveDate: "",
-        SerialNumber: "",
-        Details: "",
-        ExpireDate: ""
+    cat_id: "",
+    assignedTo: "",
+    Condition: "",
+    PurchaseDate: "",
+    DesolveDate: "",
+    SerialNumber: "",
+    Details: "",
+    ExpireDate: ""
   });
   const [asset, setAsset] = useState()
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    if (newasset.item_id === "") {
+    if (newasset.cat_id === "") {
       return alert("Must assign an asset item type");
     }
 
@@ -54,35 +55,42 @@ export default function NewAsset() {
 
   };
 
+
+
   return (
     <div>
 
-<AssetNavbar/>
+      <AssetNavbar />
 
       <form
         onSubmit={onSubmit}
         className="fflex flex-col bg-white rounded shadow-lg p-12 mt-12"
       >
-        <label className="font-semibold text-xs" htmlFor="usernameField">Username</label>
-        <input className="flex items-center h-12 px-4 w-64 bg-gray-200 mt-2 rounded focus:outline-none focus:ring-2" type="text" onChange={() => {
-          setNewUser({ ...newuser, username: event.target.value });
-        }} />
+        <label className="font-semibold text-xs" htmlFor="itemCategory">Category</label>
+        <select id="itemCategory"
+          value=""
+          className="" onChange={() => {
+            setNewUser({ newasset, cat_id: event.target.value });
+          }}>
 
-<label className="font-semibold text-xs" htmlFor="emailField">Email</label>
-        <input className="flex items-center h-12 px-4 w-64 bg-gray-200 mt-2 rounded focus:outline-none focus:ring-2" type="text" onChange={() => {
-          setNewUser({ ...newuser, email: event.target.value });
-        }} />
 
-          <label className="font-semibold text-xs mt-3" htmlFor="passwordField">Password</label>
-          <input onChange={() => {
-            setNewUser({ ...newuser, password: event.target.value });
-          }} className="flex items-center h-12 px-4 w-64 bg-gray-200 mt-2 rounded focus:outline-none focus:ring-2" type="password" />
-            <button className="flex items-center justify-center h-12 px-6 w-64 bg-blue-600 mt-8 rounded font-semibold text-sm text-blue-100 hover:bg-blue-700">Register</button>
+          {dataArrays.itemCategories.map((option, index) => {
+            return <option key={option.cat_id} >
+              {option.title}
+            </option>
+          })}
+
+
+        </select>
+
+        <button className="flex items-center justify-center h-12 px-6 w-64 bg-blue-600 mt-8 rounded font-semibold text-sm text-blue-100 hover:bg-blue-700">Register</button>
 
 
 
 
       </form>
+
+
 
     </div>
   );

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const assetSchema =  new mongoose.Schema({
-  item_id: Number,
+  cat_id: Number,
   assignedTo: String,
   Condition: String,
   PurchaseDate: Date,

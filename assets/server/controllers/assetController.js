@@ -5,7 +5,7 @@ const Asset = require('../models/asset.model');
 
 
 
-// item_id: Number,
+// cat_id: Number,
 // assignedTo: String,
 // Condition: String,
 // PurchaseDate: Date,
@@ -16,12 +16,12 @@ const Asset = require('../models/asset.model');
 
 
 exports.createAsset = async (req, res) => {
-  const { item_id, assignedTo, Condition, PurchaseDate, DesolveDate, SerialNumber, Details, ExpireDate } = req.body;
+  const { cat_id, assignedTo, Condition, PurchaseDate, DesolveDate, SerialNumber, Details, ExpireDate } = req.body;
   // console.log("req.body: ", req.body);
 
   try {
     const asset = {
-        item_id: item_id,
+      cat_id: cat_id,
         assignedTo: assignedTo,
         Condition: Condition,
         PurchaseDate: PurchaseDate,
@@ -55,7 +55,7 @@ exports.updateAssetByID = async (req, res) => {
   Asset.findByPk(id).then(result => {
     if (result) {
       const asset = {
-        item_id: result.item_id,
+        cat_id: result.cat_id,
         assignedTo: result.assignedTo,
         Condition: result.Condition,
         PurchaseDate: result.PurchaseDate,
@@ -91,7 +91,7 @@ exports.assetGetByID = async (req, res) => {
   Asset.findByPk(id).then(result => {
     if (result) {
       const asset = {
-        item_id: result.item_id,
+        cat_id: result.cat_id,
         assignedTo: result.assignedTo,
         Condition: result.Condition,
         PurchaseDate: result.PurchaseDate,

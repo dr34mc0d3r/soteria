@@ -45,3 +45,9 @@ docker exec -i mongodb /usr/bin/mongorestore --nsInclude=soteria_db.\* /dump/sot
 
 For DB authentication see
 https://davejansen.com/how-to-dump-restore-a-mongodb-database-from-a-docker-container/
+
+
+
+React Form Elements examples
+https://www.joshwcomeau.com/react/data-binding/
+
