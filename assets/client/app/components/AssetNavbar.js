@@ -11,47 +11,29 @@ export const AssetNavbar = () => {
   return (
     <div className="inline-flex mt-2">
       <button className="text-xs bg-gray-300 text-gray-800 py-2 px-8 rounded-l">
-        User:
+        Asset:
       </button>
       <button
         className={`text-xs ${
-          pathname === "/user/login" 
+          pathname === "/asset/new" 
             ? "bg-gray-800 text-white hover:bg-gray-400"
             : "bg-gray-300 text-gray-800 hover:bg-gray-400"
         } py-2 px-4`}
-        onClick={() => router.push("/user/login")}
+        onClick={() => router.push("/asset/new")}
       >
-        Login
+        New
       </button>
       <button
         className={`text-xs ${
-          pathname === "/user/register"
+          pathname === "/asset/list"
             ? "bg-gray-800 text-white hover:bg-gray-400"
             : "bg-gray-300 text-gray-800 hover:bg-gray-400"
         } py-2 px-4`}
-        onClick={() => router.push("/user/register")}
-      >
-        Register
-      </button>
-      <button
-        className={`text-xs ${
-          pathname === "/user/listusers"
-            ? "bg-gray-800 text-white hover:bg-gray-400"
-            : "bg-gray-300 text-gray-800 hover:bg-gray-400"
-        } py-2 px-4`}
-        onClick={() => router.push("/user/listusers")}
+        onClick={() => router.push("/asset/list")}
       >
         List
       </button>
-      <button
-        className={`text-xs ${
-          pathname === ""
-            ? "bg-gray-800 text-white hover:bg-gray-400"
-            : "bg-gray-300 text-gray-800 hover:bg-gray-400"
-        } py-2 px-4 rounded-r`}
-      >
-        Logout
-      </button>
+      
     </div>
   );
 };

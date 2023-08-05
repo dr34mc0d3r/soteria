@@ -58,20 +58,20 @@ export default function UserRegister() {
         className="fflex flex-col bg-white rounded shadow-lg p-12 mt-12"
       >
         <label className="font-semibold text-xs" htmlFor="usernameField">Username</label>
-        <input className="flex items-center h-12 px-4 w-64 bg-gray-200 mt-2 rounded focus:outline-none focus:ring-2" type="text" onChange={() => {
+        <input required id="usernameField" className="flex items-center h-12 px-4 w-64 bg-gray-200 mt-2 rounded focus:outline-none focus:ring-2" type="text" onChange={() => {
           setNewUser({ ...newuser, username: event.target.value });
         }} />
 
 <label className="font-semibold text-xs" htmlFor="emailField">Email</label>
-        <input className="flex items-center h-12 px-4 w-64 bg-gray-200 mt-2 rounded focus:outline-none focus:ring-2" type="text" onChange={() => {
+        <input required id="emailField" className="flex items-center h-12 px-4 w-64 bg-gray-200 mt-2 rounded focus:outline-none focus:ring-2" type="text" onChange={() => {
           setNewUser({ ...newuser, email: event.target.value });
         }} />
 
-          <label className="font-semibold text-xs mt-3" htmlFor="passwordField">Password</label>
-          <input onChange={() => {
+          <label required className="font-semibold text-xs mt-3" htmlFor="passwordField">Password</label>
+          <input id="passwordField" onChange={() => {
             setNewUser({ ...newuser, password: event.target.value });
           }} className="flex items-center h-12 px-4 w-64 bg-gray-200 mt-2 rounded focus:outline-none focus:ring-2" type="password" />
-            <button className="flex items-center justify-center h-12 px-6 w-64 bg-blue-600 mt-8 rounded font-semibold text-sm text-blue-100 hover:bg-blue-700">Register</button>
+            <button type="submit" className="flex items-center justify-center h-12 px-6 w-64 bg-blue-600 mt-8 rounded font-semibold text-sm text-blue-100 hover:bg-blue-700">Register</button>
 
 
 

@@ -16,16 +16,18 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className='w-full h-screen'>
+        <div className='w-full'>
           <Navbar />
-
-          <div className="ml-5 mr-5">
-          {children}
-          </div>
-          
         </div>
-        <Footer />
-      </body>
-    </html>
+
+        <div className="ml-5 mr-5">
+          {children}
+        </div>
+
+        <div className='w-full'>
+          <Footer />
+        </div>
+      </body >
+    </html >
   )
 }
