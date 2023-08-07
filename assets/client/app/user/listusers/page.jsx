@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-import { UserNavbar } from "@/app/components/UserNavbar";
+import UserNavbar from "@/app/components/UserNavbar";
 
 export default function listUsers() {
   const router = useRouter();

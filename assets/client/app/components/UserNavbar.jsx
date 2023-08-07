@@ -4,7 +4,8 @@ import { useRouter } from "next/navigation";
 // import { useEffect, useState } from "react";
 import { usePathname } from 'next/navigation';
 
-export const UserNavbar = () => {
+function UserNavbar() {
+
   const router = useRouter();
   const pathname = usePathname();
 
@@ -55,3 +56,5 @@ export const UserNavbar = () => {
     </div>
   );
 };
+
+export default UserNavbar

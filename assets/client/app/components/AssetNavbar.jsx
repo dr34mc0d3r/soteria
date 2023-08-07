@@ -4,7 +4,8 @@ import { useRouter } from "next/navigation";
 // import { useEffect, useState } from "react";
 import { usePathname } from 'next/navigation';
 
-export const AssetNavbar = () => {
+function AssetNavbar() {
+
   const router = useRouter();
   const pathname = usePathname();
 
@@ -37,3 +38,6 @@ export const AssetNavbar = () => {
     </div>
   );
 };
+
+export default AssetNavbar;
+

@@ -1,7 +1,8 @@
 "use client"
 import { useState, useEffect } from "react";
 import { useRouter } from 'next/navigation';
-import { AssetNavbar } from "@/app/components/AssetNavbar";
+import AssetNavbar from "@/app/components/AssetNavbar";
+import ImageUploader from '@/app/components/ImageUploader';
 import dataArrays from "../dataArrays";
 
 
@@ -77,14 +78,16 @@ export default function NewAsset() {
 
       <AssetNavbar />
 
+
+
       <form
         onSubmit={onSubmit}
         className=""
       >
 
-        <div class="container px-5 py-5 mx-auto flex flex-wrap">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
 
-          <div class="h-full p-4 lg:w-1/2">
+          <div className="">
 
             <label className="block text-sm font-medium text-gray-700" htmlFor="itemCategory">Category</label>
 
@@ -156,7 +159,7 @@ export default function NewAsset() {
           </div>
 
 
-          <div class="h-full p-4 lg:w-1/2">
+          <div className="">
 
             <label className="block text-sm font-medium text-gray-700" htmlFor="DesolveDateField">Desolve Date</label>
             <div className="mt-1 mr-0 mb-3 ml-0">
@@ -213,10 +216,28 @@ export default function NewAsset() {
 
           </div>
 
+
+
+
         </div>
 
+
+
+
+
+
+
+
+<ImageUploader />
+
+
+
+
+
+
+
         <div className="mt-1 mr-0 mb-3 ml-0">
-          <button type="submit" className="w-full flex items-center justify-center h-12 px-6 w-64 bg-blue-600 mt-8 rounded font-semibold text-sm text-blue-100 hover:bg-blue-700">Register</button>
+          <button type="submit" className="w-full flex items-center justify-center h-12 px-6 w-64 bg-blue-600 mt-8 rounded font-semibold text-sm text-blue-100 hover:bg-blue-700">Add this Asset</button>
         </div>
 
 
