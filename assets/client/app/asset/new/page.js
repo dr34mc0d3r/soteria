@@ -39,7 +39,6 @@ export default function NewAsset() {
     });
   }, []);
 
-  console.log("newasset: ", newasset);
 
 
   const onSubmit = async (e) => {
@@ -54,6 +53,7 @@ export default function NewAsset() {
       method: "POST",
       credentials: "same-origin",
       headers: {
+        authorization: `bearer ${JSON.parse(localStorage.getItem('token'))}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(newasset),
@@ -80,9 +80,10 @@ export default function NewAsset() {
 
 
 
-      <form
-        onSubmit={onSubmit}
-        className=""
+      <form 
+      method="POST" encType="multipart/form-data" 
+      onSubmit={onSubmit} 
+      className=""
       >
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

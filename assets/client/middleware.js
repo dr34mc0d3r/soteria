@@ -8,7 +8,7 @@ export function middleware(req, res) {
     // const response = NextResponse.next();
 
 
-    // if(req.cookies.has('token')) {
+    // if(localStorage.getItem('token')) {
     //     response.cookies.set('token');
     // }
     // console.log('request', req.nextUrl.pathname);
