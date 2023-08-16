@@ -5,30 +5,32 @@ const Asset = require('../models/asset.model');
 
 
 
-// cat_id: Number,
-// assignedTo: String,
+// Cat_id: Number,
+// AssignedTo: String,
 // Condition: String,
 // PurchaseDate: Date,
 // DesolveDate: Date,
 // SerialNumber: String,
 // Details: String,
 // ExpireDate: Date,
+// UploadedFile: String
 
 
 exports.createAsset = async (req, res) => {
-  const { cat_id, assignedTo, Condition, PurchaseDate, DesolveDate, SerialNumber, Details, ExpireDate } = req.body;
+  const { Cat_id, AssignedTo, Condition, PurchaseDate, DesolveDate, SerialNumber, Details, ExpireDate, UploadedFile } = req.body;
   // console.log("req.body: ", req.body);
 
   try {
     const asset = {
-      cat_id: cat_id,
-        assignedTo: assignedTo,
+      Cat_id: Cat_id,
+      AssignedTo: AssignedTo,
         Condition: Condition,
         PurchaseDate: PurchaseDate,
         DesolveDate: DesolveDate,
         SerialNumber: SerialNumber,
         Details: Details,
-        ExpireDate: ExpireDate
+        ExpireDate: ExpireDate,
+        UploadedFile: UploadedFile
       };
 
     Asset.create(asset).then(result => {
@@ -55,14 +57,15 @@ exports.updateAssetByID = async (req, res) => {
   Asset.findByPk(id).then(result => {
     if (result) {
       const asset = {
-        cat_id: result.cat_id,
-        assignedTo: result.assignedTo,
+        Cat_id: result.Cat_id,
+        AssignedTo: result.AssignedTo,
         Condition: result.Condition,
         PurchaseDate: result.PurchaseDate,
         DesolveDate: result.DesolveDate,
         SerialNumber: result.SerialNumber,
         Details: result.Details,
-        ExpireDate: result.ExpireDate
+        ExpireDate: result.ExpireDate,
+        UploadedFile: result.UploadedFile
       };
       c
       console.log('------------asset: ', asset);
@@ -91,14 +94,15 @@ exports.assetGetByID = async (req, res) => {
   Asset.findByPk(id).then(result => {
     if (result) {
       const asset = {
-        cat_id: result.cat_id,
-        assignedTo: result.assignedTo,
+        Cat_id: result.Cat_id,
+        AssignedTo: result.AssignedTo,
         Condition: result.Condition,
         PurchaseDate: result.PurchaseDate,
         DesolveDate: result.DesolveDate,
         SerialNumber: result.SerialNumber,
         Details: result.Details,
-        ExpireDate: result.ExpireDate
+        ExpireDate: result.ExpireDate,
+        UploadedFile: result.UploadedFile
       };
       c
       console.log('------------asset: ', asset);

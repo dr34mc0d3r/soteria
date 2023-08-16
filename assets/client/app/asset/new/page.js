@@ -14,6 +14,13 @@ export default function NewAsset() {
 
   const router = useRouter();
 
+  // tunnel data to and from child component
+  // https://www.c-sharpcorner.com/article/how-to-pass-data-from-child-to-parent-component-in-react/
+  const getChildData=(val) =>{
+    console.log("data from child component:", val);
+    setNewAsset({ ...newasset, UploadedFile: val.generatename });
+  }
+
   const [newasset, setNewAsset] = useState({
     Cat_id: 0,
     AssignedTo: "",
@@ -22,7 +29,8 @@ export default function NewAsset() {
     DesolveDate: "",
     SerialNumber: "",
     Details: "",
-    ExpireDate: ""
+    ExpireDate: "",
+    UploadedFile: ""
   });
 
   useEffect(() => {
@@ -35,7 +43,8 @@ export default function NewAsset() {
       DesolveDate: "",
       SerialNumber: "",
       Details: "",
-      ExpireDate: ""
+      ExpireDate: "",
+      UploadedFile: ""
     });
   }, []);
 
@@ -48,12 +57,13 @@ export default function NewAsset() {
       return alert("Must assign an asset item type");
     }
 
+    const token = localStorage.getItem("token");
 
     const myresponse = await fetch("http://192.168.142.212:3001/api/asset/create", {
       method: "POST",
       credentials: "same-origin",
       headers: {
-        authorization: `bearer ${JSON.parse(localStorage.getItem('token'))}`,
+        token: token,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(newasset),
@@ -65,7 +75,7 @@ export default function NewAsset() {
 
 
       // route to the home page
-      router.push('/asset/list');
+      // router.push('/asset/list');
     });
 
 
@@ -80,10 +90,10 @@ export default function NewAsset() {
 
 
 
-      <form 
-      method="POST" encType="multipart/form-data" 
-      onSubmit={onSubmit} 
-      className=""
+      <form
+        method="POST" encType="multipart/form-data"
+        onSubmit={onSubmit}
+        className=""
       >
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -229,7 +239,7 @@ export default function NewAsset() {
 
 
 
-<ImageUploader />
+        <ImageUploader sendToParent={getChildData} />
 
 
 

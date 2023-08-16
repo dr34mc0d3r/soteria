@@ -4,7 +4,6 @@ const filesControllers = require('../controllers/filesControllers');
 const { verifyToken } = require('../middleware/auth');
 
 const multer  = require('multer');
-// const upload = multer({ dest: 'uploads/' });
 
 // Set up storage for uploaded files
 const storage = multer.diskStorage({

@@ -49,15 +49,20 @@ exports.getFiles = async (req, res) => {
 exports.upload = async (req, res) => {
   try {
 
+    let file = req.file;
+    console.log("-----------upload controller hit", file);
+    res.send({
+      status: 1,
+      code: 200,
+      data: {
+        originname: file.originalname,
+        generatename: file.filename,
+        filePath: file.path
+      }
+    });
 
-    // console.log("response file:", req.file);
-    const responseData = {
-      message: "File uploaded successfully!",
-      filePath: req.file.path
-    }
 
-    const jsonContent = JSON.stringify(responseData);
-    res.status(200).send(jsonContent);
+
 
   } catch (err) {
     console.log(err);

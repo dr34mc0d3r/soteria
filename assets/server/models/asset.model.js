@@ -8,6 +8,7 @@ const assetSchema =  new mongoose.Schema({
   SerialNumber: String,
   Details: String,
   ExpireDate: Date,
+  UploadedFile: String,
 },{ timestamps: true });
 const Asset = mongoose.model("Asset", assetSchema);
 module.exports = Asset;
