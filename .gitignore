@@ -1,5 +1,6 @@
 DBBackup
 mongodb
+assets/server/uploads
 
 # Logs
 logs
