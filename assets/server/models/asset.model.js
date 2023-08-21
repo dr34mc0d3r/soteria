@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const assetSchema =  new mongoose.Schema({
+  User_id: String,
   Cat_id: Number,
   AssignedTo: String,
   Condition: String,

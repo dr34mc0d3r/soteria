@@ -22,6 +22,7 @@ export default function NewAsset() {
   }
 
   const [newasset, setNewAsset] = useState({
+    User_id: "",
     Cat_id: 0,
     AssignedTo: "",
     Condition: "",
@@ -36,6 +37,7 @@ export default function NewAsset() {
   useEffect(() => {
     // Reset the form when the page loads
     setNewAsset({
+      User_id: localStorage.getItem("id"),
       Cat_id: 0,
       AssignedTo: "",
       Condition: "",
@@ -52,7 +54,7 @@ export default function NewAsset() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    alert(newasset.Cat_id);
+
     if (newasset.Cat_id == 0) {
       return alert("Must assign an asset item type");
     }
@@ -74,8 +76,8 @@ export default function NewAsset() {
 
 
 
-      // route to the home page
-      // router.push('/asset/list');
+      // route to the users list page
+      router.push('/asset/list/' + newasset.User_id);
     });
 
 

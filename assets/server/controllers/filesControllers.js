@@ -1,4 +1,4 @@
-
+const path = require("path");
 
 
 
@@ -45,6 +45,42 @@ exports.getFiles = async (req, res) => {
   //     })
   //   });
 }
+
+exports.image = async (req, res) => {
+
+  
+
+  
+  try {
+
+
+    const imagename = req.params.imagename;
+
+    var options = {
+      root: path.join(__dirname, '../uploads'),
+      dotfiles: 'deny',
+      headers: {
+        'x-timestamp': Date.now(),
+        'x-sent': true
+      }
+    }
+
+    res.sendFile(imagename, options, function (err) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log('Sent:', imagename)
+      }
+    });
+
+
+
+
+  } catch (err) {
+    console.log(err);
+
+  }
+};
 
 exports.upload = async (req, res) => {
   try {

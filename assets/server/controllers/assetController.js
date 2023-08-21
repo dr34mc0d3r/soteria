@@ -4,7 +4,7 @@ const Asset = require('../models/asset.model');
 
 
 
-
+// User_id: String
 // Cat_id: Number,
 // AssignedTo: String,
 // Condition: String,
@@ -17,11 +17,12 @@ const Asset = require('../models/asset.model');
 
 
 exports.createAsset = async (req, res) => {
-  const { Cat_id, AssignedTo, Condition, PurchaseDate, DesolveDate, SerialNumber, Details, ExpireDate, UploadedFile } = req.body;
+  const { User_id, Cat_id, AssignedTo, Condition, PurchaseDate, DesolveDate, SerialNumber, Details, ExpireDate, UploadedFile } = req.body;
   // console.log("req.body: ", req.body);
 
   try {
     const asset = {
+      User_id: User_id,
       Cat_id: Cat_id,
       AssignedTo: AssignedTo,
         Condition: Condition,
@@ -57,6 +58,7 @@ exports.updateAssetByID = async (req, res) => {
   Asset.findByPk(id).then(result => {
     if (result) {
       const asset = {
+        User_id: result.User_id,
         Cat_id: result.Cat_id,
         AssignedTo: result.AssignedTo,
         Condition: result.Condition,
@@ -87,6 +89,27 @@ exports.deleteAssetByID = async (req, res) => {
 
 }
 
+exports.assetForId = async (req, res) => {
+  console.log('------------REQUESTED ID: ', req.params.id);
+  const id = req.params.id;
+
+  Asset.find({ User_id: id }).then(result => {
+    if (result) {
+      
+      console.log('------------asset result: ', result);
+      res.status(200).json(result);
+    } else {
+      res.status(404).json({
+        message: "Assets for user id not found!"
+      })
+    }
+  }).catch(error => {
+    res.status(500).json({
+      message: "Something went wrong!"
+    })
+  });
+}
+
 exports.assetGetByID = async (req, res) => {
   console.log('------------REQUESTED ID: ', req.params.id);
   const id = req.params.id;
@@ -94,6 +117,7 @@ exports.assetGetByID = async (req, res) => {
   Asset.findByPk(id).then(result => {
     if (result) {
       const asset = {
+        User_id: result.User_id,
         Cat_id: result.Cat_id,
         AssignedTo: result.AssignedTo,
         Condition: result.Condition,
