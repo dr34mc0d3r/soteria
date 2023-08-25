@@ -1,7 +1,8 @@
 "use client"
-import { useState } from "react";
+import { useState, useReducer } from "react";
 import { useRouter } from 'next/navigation';
 import UserNavbar from "@/app/components/UserNavbar";
+import reducerOne from '@/app/user/reducer';
 
 
 
@@ -16,7 +17,9 @@ const appSubSection = "login";
     username: "",
     password: "",
   });
-  const [user, setUser] = useState()
+  const [user, setUser] = useState();
+
+  const [authenticated, dispatch] = useReducer(reducerOne, {});
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -37,6 +40,7 @@ const appSubSection = "login";
       // https://articles.wesionary.team/securing-sensitive-data-in-a-next-js-application-d7d5cce67f23
       localStorage.setItem('token', data.token);
       localStorage.setItem('id', data.id);
+      dispatch({ type: "login" });
 
       setUser(data.user);
 

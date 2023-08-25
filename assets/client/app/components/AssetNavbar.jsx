@@ -10,7 +10,8 @@ function AssetNavbar() {
   const pathname = usePathname();
   const param1 = useParams();
 
-  let id = localStorage.getItem("id");
+  const id = localStorage.getItem("id");
+
 
 
 
