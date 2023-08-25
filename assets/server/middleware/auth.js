@@ -3,7 +3,7 @@ const { secretKey } = require('./config');
 
 
 const generateToken = (payload) => {
-  const token = jwt.sign(payload, secretKey, { expiresIn: '1h' });
+  const token = jwt.sign(payload, secretKey, { expiresIn: '3h' });
   return  token ;
 };
 const verifyToken = (req, res, next) => {

@@ -29,12 +29,12 @@ const Navbar = () => {
           }`}
         >
           <li className="md:ml-8 md:my-0 my-7 font-semibold">
-            <Link href="/user/login" className="text-gray-800 hover:text-white duration-500">
+            <Link onClick={() => setNavbarNavOpen(!navbarNavOpen)} href="/user/login" className="text-gray-800 hover:text-white duration-500">
               User
             </Link>
           </li>
           <li className="md:ml-8 md:my-0 my-7 font-semibold">
-            <Link href="/asset/new" className="text-gray-800 hover:text-white duration-500">
+            <Link onClick={() => setNavbarNavOpen(!navbarNavOpen)} href="/asset/new" className="text-gray-800 hover:text-white duration-500">
               Asset
             </Link>
           </li>

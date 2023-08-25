@@ -52,7 +52,7 @@ exports.createAsset = async (req, res) => {
 
 
 exports.updateAssetByID = async (req, res) => {
-  console.log('------------REQUESTED ID: ', req.params.id);
+
   const id = req.params.id;
 
   Asset.findByPk(id).then(result => {
@@ -69,9 +69,9 @@ exports.updateAssetByID = async (req, res) => {
         ExpireDate: result.ExpireDate,
         UploadedFile: result.UploadedFile
       };
-      c
-      console.log('------------asset: ', asset);
+
       res.status(200).json(asset);
+
     } else {
       res.status(404).json({
         message: "Asset not found!"
@@ -87,17 +87,33 @@ exports.updateAssetByID = async (req, res) => {
 exports.deleteAssetByID = async (req, res) => {
   const id = req.params.id;
 
+
+  try {
+    const result = await Asset.findByIdAndDelete(id);
+    res.status(201).json({
+      message: "Asset deleted successfully",
+      result: result
+    });
+  } catch(err) {
+    res.status(500).json({
+      message: "Something went wrong!",
+      err: err
+    });
+  }
+
+
+
 }
 
 exports.assetForId = async (req, res) => {
-  console.log('------------REQUESTED ID: ', req.params.id);
+
   const id = req.params.id;
 
   Asset.find({ User_id: id }).then(result => {
     if (result) {
       
-      console.log('------------asset result: ', result);
       res.status(200).json(result);
+
     } else {
       res.status(404).json({
         message: "Assets for user id not found!"
@@ -111,7 +127,7 @@ exports.assetForId = async (req, res) => {
 }
 
 exports.assetGetByID = async (req, res) => {
-  console.log('------------REQUESTED ID: ', req.params.id);
+
   const id = req.params.id;
 
   Asset.findByPk(id).then(result => {
@@ -128,9 +144,9 @@ exports.assetGetByID = async (req, res) => {
         ExpireDate: result.ExpireDate,
         UploadedFile: result.UploadedFile
       };
-      c
-      console.log('------------asset: ', asset);
+
       res.status(200).json(asset);
+      
     } else {
       res.status(404).json({
         message: "Asset not found!"

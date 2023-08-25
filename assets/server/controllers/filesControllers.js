@@ -86,7 +86,7 @@ exports.upload = async (req, res) => {
   try {
 
     let file = req.file;
-    console.log("-----------upload controller hit", file);
+
     res.send({
       status: 1,
       code: 200,
