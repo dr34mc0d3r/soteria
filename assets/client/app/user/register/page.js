@@ -25,7 +25,7 @@ export default function UserRegister() {
       return alert("Cant pass empty fields");
 
 
-    const myresponse = await fetch("http://192.168.142.212:3001/api/auth/register", {
+    const myresponse = await fetch(process.env.NEXT_PUBLIC_API_HOST + ":" + process.env.NEXT_PUBLIC_API_PORT + "/api/auth/register", {
       method: "POST",
       credentials: "same-origin",
       headers: {

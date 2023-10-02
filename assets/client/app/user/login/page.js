@@ -1,4 +1,5 @@
 "use client"
+
 import { useState, useReducer } from "react";
 import { useRouter } from 'next/navigation';
 import UserNavbar from "@/app/components/UserNavbar";
@@ -23,11 +24,12 @@ const appSubSection = "login";
 
   const onSubmit = async (e) => {
     e.preventDefault();
+
     if (newuser.username === "" || newuser.password === "")
       return alert("Cant pass empty fields");
 
 
-    const myresponse = await fetch("http://192.168.142.212:3001/api/auth/login", {
+    const myresponse = await fetch(process.env.NEXT_PUBLIC_API_HOST + ":" + process.env.NEXT_PUBLIC_API_PORT + "/api/auth/login", {
       method: "POST",
       credentials: "same-origin",
       headers: {

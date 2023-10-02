@@ -61,7 +61,7 @@ export default function NewAsset() {
 
     const token = localStorage.getItem("token");
 
-    const myresponse = await fetch("http://192.168.142.212:3001/api/asset/create", {
+    const myresponse = await fetch(process.env.NEXT_PUBLIC_API_HOST + ":" + process.env.NEXT_PUBLIC_API_PORT + "/api/asset/create", {
       method: "POST",
       credentials: "same-origin",
       headers: {

@@ -18,7 +18,7 @@ export default function listAssets() {
     const token = localStorage.getItem("token");
 
     try {
-      const response = await fetch("http://192.168.142.212:3001/api/asset/assetsforid/" + id, {
+      const response = await fetch(process.env.NEXT_PUBLIC_API_HOST + ":" + process.env.NEXT_PUBLIC_API_PORT + "/api/asset/assetsforid/" + id, {
         method: "GET",
         cache: "no-cache",
         headers: {

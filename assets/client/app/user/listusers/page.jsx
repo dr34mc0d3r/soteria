@@ -12,7 +12,7 @@ export default function listUsers() {
     const token = localStorage.getItem("token");
     // console.log("token", token);
 
-    const users = await fetch("http://192.168.142.212:3001/api/auth/users", {
+    const users = await fetch(process.env.NEXT_PUBLIC_API_HOST + ":" + process.env.NEXT_PUBLIC_API_PORT + "/api/auth/users", {
       method: "GET",
       cache: "no-cache",
       headers: {
